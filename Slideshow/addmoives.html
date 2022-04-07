@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body{
+  background-color: black;
+}
+    </style>
+</head>
+<body>
+    <input id="name" type="text" placeholder="Enter Movie Name"><br><br>
+    <input id="date" type="date" placeholder="Release Date"><br><br>
+    <input id="url" type="text" placeholder="url"><br><br>
+    <input id="rating" type="text" placeholder="IMDb rating"><br><br>
+    <button onclick="storeMovie()">Submit</button>
+</body>
+</html>
+
+<script>
+    let movie_arr = JSON.parse(localStorage.getItem("movies")) || [];
+    function storeMovie()
+    {
+        let name = document.querySelector("#name").value;
+        let date = document.querySelector("#date").value;
+        let url = document.querySelector("#url").value;
+        let rating = document.querySelector("#rating").value;
+
+        let obj = {
+            name: name,
+            date: date,
+            url: url,
+            rating: rating,
+        }
+        
+        movie_arr.push(obj)
+        localStorage.setItem("movies",JSON.stringify(movie_arr));
+    }
+</script>
